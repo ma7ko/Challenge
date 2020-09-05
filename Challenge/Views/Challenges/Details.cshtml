@@ -1,0 +1,53 @@
+﻿@model Challenge.Models.Challenge
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Challenge</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedOn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndsOn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndsOn)
+        </dd>
+
+    </dl>
+
+    <ul>
+        @Model.Participants.Count
+        @foreach(var participant in Model.Participants)
+        {
+            <li>@participant.UserName</li>
+        }
+    </ul>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
