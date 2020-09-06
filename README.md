@@ -6,3 +6,6 @@ Zadaci:
 2) da se dodade upload kopce vo details view na problems i dialog za upload na file
 3) da se dodade back kopce/link od problems index view vo tocniot challenge details view
 4) da se vrati http not found ako user klikne na details za challenge za koj pominal end date 
+
+Ako imas predlog ili dodeka rabotis ako ti tekne za funckionalnost koja treba da ja ima sistemot, 
+slobodno dodaj go kako zadaca i nekoj od nas kje go sraboti.
