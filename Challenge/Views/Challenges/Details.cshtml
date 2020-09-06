@@ -37,12 +37,13 @@
     </dl>
 
     <ul>
-        @Model.Participants.Count
         @foreach(var participant in Model.Participants)
         {
             <li>@participant.UserName</li>
         }
     </ul>
+
+    <button class="btn btn-success">@Html.ActionLink("All tasks", "GetAllTasks", new { id = Model.Id })</button>
 
 </div>
 <p>

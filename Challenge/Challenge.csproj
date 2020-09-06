@@ -191,6 +191,14 @@
     <Compile Include="Migrations\202009051856580_fourth.Designer.cs">
       <DependentUpon>202009051856580_fourth.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009052044102_fifth.cs" />
+    <Compile Include="Migrations\202009052044102_fifth.Designer.cs">
+      <DependentUpon>202009052044102_fifth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009061050015_sixth.cs" />
+    <Compile Include="Migrations\202009061050015_sixth.Designer.cs">
+      <DependentUpon>202009061050015_sixth.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Challenge.cs" />
@@ -295,6 +303,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009051856580_fourth.resx">
       <DependentUpon>202009051856580_fourth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009052044102_fifth.resx">
+      <DependentUpon>202009052044102_fifth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009061050015_sixth.resx">
+      <DependentUpon>202009061050015_sixth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

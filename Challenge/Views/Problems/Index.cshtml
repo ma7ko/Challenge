@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", new { id = ViewBag.ChallengeId })
 </p>
 <table class="table">
     <tr>
@@ -22,11 +22,12 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
+                @Html.HiddenFor(modelItem => item.Challenge.Id);
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id, id2 = ViewBag.ChallengeId } ) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id, id2 = ViewBag.ChallengeId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id, id2 = ViewBag.ChallengeId })
             </td>
         </tr>
     }

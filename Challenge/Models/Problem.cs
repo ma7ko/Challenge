@@ -13,6 +13,10 @@ namespace Challenge.Models
 
         public string Name { get; set; }
 
+        public int ChallengeFK { get; set; }
+
+        public virtual Challenge Challenge { get; set; }
+
         public ICollection<string> ImageLinks { get; set; }
     }
 }

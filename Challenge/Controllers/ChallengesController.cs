@@ -129,6 +129,11 @@ namespace Challenge.Controllers
             return HttpNotFound();
         }
 
+        public ActionResult GetAllTasks(int id)
+        {
+            return Redirect("../../Problems/Index/"+id);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
