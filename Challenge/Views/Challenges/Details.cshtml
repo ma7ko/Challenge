@@ -43,7 +43,7 @@
         }
     </ul>
 
-    <button class="btn btn-success">@Html.ActionLink("All tasks", "GetAllTasks", new { id = Model.Id })</button>
+    @Html.ActionLink("All tasks", "GetAllTasks", new { id = Model.Id }, new { @class = "btn btn-primary" })
 
 </div>
 <p>

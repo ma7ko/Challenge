@@ -47,7 +47,7 @@ namespace Challenge.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CreatedOn,EndsOn")] Challenge.Models.Challenge challenge)
+        public ActionResult Create([Bind(Include = "Id,Name,CreatedOn,EndsOn")] Challenge.Models.Challenge challenge)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace Challenge.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CreatedOn,EndsOn")] Challenge.Models.Challenge challenge)
+        public ActionResult Edit([Bind(Include = "Id,Name,CreatedOn,EndsOn")] Challenge.Models.Challenge challenge)
         {
             if (ModelState.IsValid)
             {
@@ -120,11 +120,11 @@ namespace Challenge.Controllers
         {
             Challenge.Models.Challenge challenge = db.Challenges.Find(id);
             ApplicationUser applicationUser = db.Users.Find(User.Identity.GetUserId());
-            if (applicationUser != null) 
+            if (User.Identity.IsAuthenticated) 
             {
                 challenge.Participants.Add(applicationUser);
                 db.SaveChanges();
-                return RedirectToAction("Index", challenge);
+                return RedirectToAction("Index", db.Challenges.ToList());
             }
             return HttpNotFound();
         }

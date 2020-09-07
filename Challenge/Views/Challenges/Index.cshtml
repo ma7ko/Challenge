@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Challenge.Models.Challenge>
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<Challenge.Models.Challenge>
 
 @{
     ViewBag.Title = "Index";
@@ -23,24 +24,44 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedOn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndsOn)
-        </td>
-        <td>
-            <button class="btn btn-success">@Html.ActionLink("Join", "AddParticipantToChallenge", new { id=item.Id })</button>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndsOn)
+            </td>
+            <td>
+                @if (item.Participants.Where(p => p.Id == User.Identity.GetUserId()).Select(p => p).ToList().Count > 0)
+                {
+                    <button class="btn btn-secondary" disabled>Joined</button>
+                }
+                else
+                {
+                    @Html.ActionLink("Join", "AddParticipantToChallenge", new { id = item.Id }, new { @class = "btn btn-success anch" })
+                    <button id="inactive-button" style="display: none" class="btn btn-secondary" disabled>Joined</button>
+                }
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
+
+@section Scripts {
+    <script>
+        $(document).on("ready", function () {
+            $(".anch").on("click", function () {
+                $(this).css("display", "none");
+                $('#inactive-button').css("display", "inline-block");
+            });
+        })
+    </script>
+}
