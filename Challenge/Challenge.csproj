@@ -203,6 +203,10 @@
     <Compile Include="Migrations\202009072136480_seventh.Designer.cs">
       <DependentUpon>202009072136480_seventh.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009080910033_eighth.cs" />
+    <Compile Include="Migrations\202009080910033_eighth.Designer.cs">
+      <DependentUpon>202009080910033_eighth.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Challenge.cs" />
@@ -316,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009072136480_seventh.resx">
       <DependentUpon>202009072136480_seventh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009080910033_eighth.resx">
+      <DependentUpon>202009080910033_eighth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
