@@ -21,6 +21,9 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id, id2 = Model.ChallengeFK }) |
-    @Html.ActionLink("Back to List", "Index", new { id = @Model.ChallengeFK })
+    @if (User.IsInRole("Editor")) 
+    { 
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id, id2 = Model.ChallengeFK }, new { @class = "btn btn-default" })
+    }
+    @Html.ActionLink("Back to List", "Index", new { id = Model.ChallengeFK }, htmlAttributes: new { @class = "btn btn-default" })
 </p>

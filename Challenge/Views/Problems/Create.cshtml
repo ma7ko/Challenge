@@ -33,7 +33,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", new { id = Model.ChallengeFK }, htmlAttributes: new { @class = "btn btn-default" })
 </div>
 
 @section Scripts {
