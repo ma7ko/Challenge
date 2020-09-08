@@ -26,7 +26,7 @@
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index", new { id = Model.ChallengeFK })
+            @Html.ActionLink("Back to List", "Index", new { id = Model.ChallengeFK }, htmlAttributes: new { @class = "btn btn-default" })
         </div>
     }
 </div>

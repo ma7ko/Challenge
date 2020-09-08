@@ -209,6 +209,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AddToRoleModel.cs" />
     <Compile Include="Models\Challenge.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -282,6 +283,7 @@
     <Content Include="Views\Problems\Details.cshtml" />
     <Content Include="Views\Problems\Edit.cshtml" />
     <Content Include="Views\Problems\Index.cshtml" />
+    <Content Include="Views\Account\AddUserToRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

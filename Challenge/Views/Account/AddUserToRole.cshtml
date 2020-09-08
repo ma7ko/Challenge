@@ -1,0 +1,19 @@
+﻿@model Challenge.Models.AddToRoleModel
+@{
+    ViewBag.Title = "AddUserToRole";
+}
+
+<h2>Add user to role</h2>
+
+@using (Html.BeginForm("AddUserToRole", "Account"))
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        <br />
+        @Html.DropDownListFor(model => model.SelectedRole, new SelectList(Model.Roles), new { @class = "form-control" })
+        <br />
+        <button type="submit" class="btn btn-primary">Add Role</button>
+    </div>
+}
+

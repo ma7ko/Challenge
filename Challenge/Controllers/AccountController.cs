@@ -271,6 +271,30 @@ namespace Challenge.Controllers
             return View();
         }
 
+        [Authorize(Roles="Editor")]
+        public ActionResult AddUserToRole()
+        {
+            var model = new AddToRoleModel();
+            model.Roles.Add("Editor");
+            model.Roles.Add("User");
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddUserToRole(AddToRoleModel model)
+        {
+            try
+            {
+                var user = UserManager.FindByEmail(model.Email);
+                UserManager.AddToRole(user.Id, model.SelectedRole);
+                return RedirectToAction("Index", "Home");
+            }
+            catch(Exception ex)
+            {
+                return HttpNotFound(ex.Message);
+            }
+        }
+
         //
         // POST: /Account/ExternalLogin
         [HttpPost]
