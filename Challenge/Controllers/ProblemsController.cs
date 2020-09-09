@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Challenge.Models;
 using Microsoft.Ajax.Utilities;
+using Microsoft.AspNet.Identity;
 
 namespace Challenge.Controllers
 {
@@ -24,7 +25,7 @@ namespace Challenge.Controllers
                 challengeId = id;
             }
             ViewBag.ChallengeId = id;
-            ICollection<Problem> problems = db.Problems.Where(problem => problem.ChallengeFK != null && problem.ChallengeFK == id)
+            ICollection<Problem> problems = db.Problems.Where(problem => problem.ChallengeFK != 0 && problem.ChallengeFK == id)
                                                         .Select(problem => problem).ToList();
             return View(problems);
         }
@@ -124,6 +125,33 @@ namespace Challenge.Controllers
         {
             Problem problem = db.Problems.Find(id);
             db.Problems.Remove(problem);
+            db.SaveChanges();
+            return RedirectToAction("Index", new { id = problem.ChallengeFK });
+        }
+
+        // Add new view for uploading a photo and send the viewmodel for user and problem
+        // There should be a button for that in details of problems or in the index file
+
+        public ActionResult AddSolutionToProblem(Problem model)
+        {
+            if (User.Identity.IsAuthenticated && db.Challenges.Find(model.ChallengeFK).Participants.Contains(db.Users.Find(User.Identity.GetUserId())))
+            {
+                ProblemUserModel problemUserModel = new ProblemUserModel() { Problem = model, ProblemFK = model.Id, User = db.Users.Find(User.Identity.GetUserId()), UserFK = User.Identity.GetUserId() };
+                return View(problemUserModel);
+            }
+            return HttpNotFound();
+        }
+
+        [HttpPost]
+        public ActionResult AddSolutionToProblem(ProblemUserModel model)
+        {
+            if (model.Solution == null)
+            {
+                return HttpNotFound();
+            }
+            Problem problem = db.Problems.Find(model.ProblemFK);
+            problem.ImageLinks.Add(model.Solution);
+            db.Solutions.Add(model);
             db.SaveChanges();
             return RedirectToAction("Index", new { id = problem.ChallengeFK });
         }

@@ -18,5 +18,10 @@ namespace Challenge.Models
         public virtual Challenge Challenge { get; set; }
 
         public ICollection<string> ImageLinks { get; set; }
+
+        public Problem()
+        {
+            ImageLinks = new List<string>();
+        }
     }
 }

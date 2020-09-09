@@ -29,6 +29,8 @@ namespace Challenge.Models
 
         public DbSet<Problem> Problems { get; set; }
 
+        public DbSet<ProblemUserModel> Solutions { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
