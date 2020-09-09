@@ -21,8 +21,12 @@
     </dl>
 </div>
 <p>
-    @if (User.IsInRole("Editor")) 
-    { 
+    @if (!User.IsInRole("Editor"))
+    {
+        @Html.ActionLink("Upload", "AddSolutionToProblem", Model, htmlAttributes: new { @class = "btn btn-success" })
+    }
+    @if (User.IsInRole("Editor"))
+    {
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id, id2 = Model.ChallengeFK }, new { @class = "btn btn-default" })
     }
     @Html.ActionLink("Back to List", "Index", new { id = Model.ChallengeFK }, htmlAttributes: new { @class = "btn btn-default" })
