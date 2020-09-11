@@ -219,6 +219,18 @@
     <Compile Include="Migrations\202009092016499_eleventh.Designer.cs">
       <DependentUpon>202009092016499_eleventh.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009101641318_twelfth.cs" />
+    <Compile Include="Migrations\202009101641318_twelfth.Designer.cs">
+      <DependentUpon>202009101641318_twelfth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009101803351_thirteenth.cs" />
+    <Compile Include="Migrations\202009101803351_thirteenth.Designer.cs">
+      <DependentUpon>202009101803351_thirteenth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009101913394_fourteenth.cs" />
+    <Compile Include="Migrations\202009101913394_fourteenth.Designer.cs">
+      <DependentUpon>202009101913394_fourteenth.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AddToRoleModel.cs" />
@@ -348,6 +360,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009092016499_eleventh.resx">
       <DependentUpon>202009092016499_eleventh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009101641318_twelfth.resx">
+      <DependentUpon>202009101641318_twelfth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009101803351_thirteenth.resx">
+      <DependentUpon>202009101803351_thirteenth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009101913394_fourteenth.resx">
+      <DependentUpon>202009101913394_fourteenth.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
