@@ -149,10 +149,19 @@ namespace Challenge.Controllers
             {
                 return HttpNotFound();
             }
-            Problem problem = db.Problems.Find(model.ProblemFK);
-            problem.ImageLinks.Add(model.Solution);
-            db.Solutions.Add(model);
-            db.SaveChanges();
+            ProblemUserModel problemUserModel = db.Solutions.Find(model.ProblemFK, model.UserFK);
+            Problem problem = db.Problems.Include(p => p.Solutions).Where(p => p.Id == model.ProblemFK).First();
+            if (problemUserModel != null)
+            {
+                problemUserModel.Solution = model.Solution;
+                db.SaveChanges();
+            }
+            else
+            {
+                problem.Solutions.Add(model);
+                db.Solutions.Add(model);
+                db.SaveChanges();
+            }
             return RedirectToAction("Index", new { id = problem.ChallengeFK });
         }
 

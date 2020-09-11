@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -17,11 +18,7 @@ namespace Challenge.Models
 
         public virtual Challenge Challenge { get; set; }
 
-        public ICollection<string> ImageLinks { get; set; }
+        public virtual ICollection<ProblemUserModel> Solutions { get; set; }
 
-        public Problem()
-        {
-            ImageLinks = new List<string>();
-        }
     }
 }

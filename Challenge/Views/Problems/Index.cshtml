@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Challenge.Models.Problem>
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<Challenge.Models.Problem>
 
 @{
     ViewBag.Title = "Index";
@@ -28,6 +29,14 @@
                 @Html.HiddenFor(modelItem => item.Challenge.Id);
             </td>
             <td>
+                @if (item.Solutions.Where(s => s.ProblemFK != 0 && s.UserFK != null && s.ProblemFK == item.Id && s.UserFK == User.Identity.GetUserId()).Select(e => e).ToList().Count > 0)
+                {
+                    <span class="text-success" style="padding:10px;">&check;</span>
+                }
+                @if (!User.IsInRole("Editor"))
+                {
+                    @Html.ActionLink("Upload", "AddSolutionToProblem", item, htmlAttributes: new { @class = "btn btn-success" })
+                }
                 @Html.ActionLink("Details", "Details", new { id = item.Id, id2 = ViewBag.ChallengeId }, new { @class = "btn btn-default" })
                 @if (User.IsInRole("Editor"))
                 {

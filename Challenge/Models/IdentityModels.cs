@@ -12,6 +12,9 @@ namespace Challenge.Models
     public class ApplicationUser : IdentityUser
     {
         public virtual ICollection<Challenge> Challenges { get; set; }
+
+        public virtual ICollection<Problem> Problems { get; set; }
+
         public int Points { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
