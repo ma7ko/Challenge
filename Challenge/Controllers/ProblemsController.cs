@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -15,15 +16,10 @@ namespace Challenge.Controllers
     public class ProblemsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        public int challengeId;
 
         // GET: Problems
         public ActionResult Index(int id)
         {
-            if (id != 0)
-            {
-                challengeId = id;
-            }
             ViewBag.ChallengeId = id;
             ICollection<Problem> problems = db.Problems.Where(problem => problem.ChallengeFK != 0 && problem.ChallengeFK == id)
                                                         .Select(problem => problem).ToList();

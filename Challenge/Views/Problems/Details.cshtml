@@ -19,6 +19,18 @@
         </dd>
 
     </dl>
+    <div class="row">
+        @foreach (var solution in Model.Solutions)
+        {
+            <div class="col-md-4 text-center" style="padding:20px;">
+                <img src="@solution.Solution" style="width:160px; height:160px; object-fit: contain;" />
+                <br />
+                <div>
+                    @Html.ActionLink("Approve", "ApproveUser", null, htmlAttributes: new { @class = "btn btn-success" })
+                </div>
+            </div>
+        }
+    </div>
 </div>
 <p>
     @if (User.IsInRole("Editor"))
