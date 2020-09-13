@@ -16,6 +16,8 @@ namespace Challenge.Models
 
         public int ChallengeFK { get; set; }
 
+        public string WinnerFK { get; set; }
+
         public virtual Challenge Challenge { get; set; }
 
         public virtual ICollection<ProblemUserModel> Solutions { get; set; }

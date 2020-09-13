@@ -29,7 +29,11 @@
                 @Html.HiddenFor(modelItem => item.Challenge.Id);
             </td>
             <td>
-                @if (item.Solutions.Where(s => s.ProblemFK != 0 && s.UserFK != null && s.ProblemFK == item.Id && s.UserFK == User.Identity.GetUserId()).Select(e => e).ToList().Count > 0)
+                @if (item.WinnerFK != null)
+                {
+                    <span class="text-danger" style="border: 1px solid white; padding: 5px; margin: 5px; background-color: #ffd8d9;">closed</span>
+                }
+                @if (item.WinnerFK == null && item.Solutions.Where(s => s.ProblemFK != 0 && s.UserFK != null && s.ProblemFK == item.Id && s.UserFK == User.Identity.GetUserId()).Select(e => e).ToList().Count > 0)
                 {
                     <span class="text-success" style="padding:10px;">&check;</span>
                 }

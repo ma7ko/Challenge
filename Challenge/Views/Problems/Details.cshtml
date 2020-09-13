@@ -19,18 +19,35 @@
         </dd>
 
     </dl>
-    <div class="row">
-        @foreach (var solution in Model.Solutions)
+    @if (User.IsInRole("Editor"))
+    {
+        if (Model.WinnerFK == null)
         {
-            <div class="col-md-4 text-center" style="padding:20px;">
-                <img src="@solution.Solution" style="width:160px; height:160px; object-fit: contain;" />
-                <br />
-                <div>
-                    @Html.ActionLink("Approve", "ApproveUser", null, htmlAttributes: new { @class = "btn btn-success" })
-                </div>
+            <div class="row">
+                @foreach (var solution in Model.Solutions)
+                {
+                    <div class="col-md-4 text-center" style="padding:20px;">
+                        <img src="@solution.Solution" style="width:160px; height:160px; object-fit: contain;" />
+                        <br />
+                        <div>
+                            @Html.ActionLink("Approve", "ApproveUser", new { userId = solution.UserFK, problemId = solution.ProblemFK }, htmlAttributes: new { @class = "btn btn-success" })
+                        </div>
+                    </div>
+                }
             </div>
         }
-    </div>
+        else
+        {
+            <p>You chose a winner for this task and that is the user - @Model.WinnerFK . This task is currently closed.</p>
+        }
+    }
+    else
+    {
+        if (Model.WinnerFK != null)
+        {
+            <p>The winner for this task is @Model.WinnerFK .</p>
+        }
+    }
 </div>
 <p>
     @if (User.IsInRole("Editor"))
