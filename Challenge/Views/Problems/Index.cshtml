@@ -56,3 +56,11 @@
     }
 
 </table>
+@if (User.IsInRole("User"))
+{
+    @Html.ActionLink("Back", "BackUser", null, new { @class = "btn btn-default" })
+}
+@if (User.IsInRole("Editor"))
+{
+    @Html.ActionLink("Back", "BackEditor", new { id = ViewBag.ChallengeId }, new { @class = "btn btn-default" })
+}
