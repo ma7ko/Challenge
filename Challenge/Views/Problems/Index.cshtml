@@ -13,25 +13,28 @@
         @Html.ActionLink("Create New", "Create", new { id = ViewBag.ChallengeId }, htmlAttributes: new { @class = "btn btn-default" })
     }
 </p>
-<table class="table">
+<table class="table" id="problemsTable">
+    <thead>
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
         <th></th>
     </tr>
-
+    </thead>
+    <tbody>
     @foreach (var item in Model)
     {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
-                @Html.HiddenFor(modelItem => item.Challenge.Id);
+                @Html.HiddenFor(modelItem => item.Challenge.Id)
             </td>
             <td>
+                <div style="float: right;">
                 @if (item.WinnerFK != null)
                 {
-                    <span class="text-danger" style="border: 1px solid white; padding: 5px; margin: 5px; background-color: #ffd8d9;">closed</span>
+                    <span class="text-danger" style="border: 3px solid #cecece; padding: 5px; margin: 5px; background-color: #ffd8d9;">closed</span>
                 }
                 @if (item.WinnerFK == null && item.Solutions.Where(s => s.ProblemFK != 0 && s.UserFK != null && s.ProblemFK == item.Id && s.UserFK == User.Identity.GetUserId()).Select(e => e).ToList().Count > 0)
                 {
@@ -50,13 +53,13 @@
                 {
                     @Html.ActionLink("Delete", "Delete", new { id = item.Id, id2 = ViewBag.ChallengeId }, new { @class = "btn btn-danger" })
                 }
-
+                </div>
             </td>
         </tr>
     }
-
+    </tbody>
 </table>
-@if (User.IsInRole("User"))
+@if (!User.IsInRole("Editor"))
 {
     @Html.ActionLink("Back", "BackUser", null, new { @class = "btn btn-default" })
 }
@@ -64,3 +67,10 @@
 {
     @Html.ActionLink("Back", "BackEditor", new { id = ViewBag.ChallengeId }, new { @class = "btn btn-default" })
 }
+
+
+@section Scripts {
+    <script>
+       $("#problemsTable").DataTable();
+    </script>
+  }

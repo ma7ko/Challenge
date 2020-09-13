@@ -9,49 +9,71 @@
 <div>
     <h4>Challenge</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <div class="row">
+        <div class="col-md-6">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedOn)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CreatedOn)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreatedOn)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.CreatedOn)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndsOn)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EndsOn)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EndsOn)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.EndsOn)
+                </dd>
 
-    </dl>
-
-    <ul>
-        @foreach(var participant in Model.Participants)
+            </dl>
+        </div>
+        <div class="col-md-4">
+            <h3>Users participating</h3>
+            <table class="table" id="participantsTable">
+                <thead>
+                    <tr>
+                        <th>User email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var participant in Model.Participants)
+                    {
+                        <tr>
+                            <td>@participant.UserName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    </div>
+    <p>
+        @if (User.IsInRole("Editor"))
         {
-            <li>@participant.UserName</li>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-default" })
         }
-    </ul>
+        @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
+        @Html.ActionLink("All tasks", "GetAllTasks", new { id = Model.Id }, new { @class = "btn btn-primary" })
+    </p>
 
-    @Html.ActionLink("All tasks", "GetAllTasks", new { id = Model.Id }, new { @class = "btn btn-primary" })
-
-</div>
-<p>
-    @if (User.IsInRole("Editor"))
-    {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-default" })
-    }
-    @Html.ActionLink("Back to List", "Index", null, htmlAttributes: new { @class = "btn btn-default" })
-</p>
-
+@section Scripts {
+    <script>
+        $('#participantsTable').DataTable({
+            pageLength: 5,
+            bLengthChange: false,
+            searching: false
+        });
+        </script>}
 
