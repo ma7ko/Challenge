@@ -119,6 +119,10 @@ namespace Challenge.Controllers
         public ActionResult AddParticipantToChallenge(int id)
         {
             Challenge.Models.Challenge challenge = db.Challenges.Find(id);
+            if (challenge.EndsOn < DateTime.Now)
+            {
+                return HttpNotFound();
+            }
             ApplicationUser applicationUser = db.Users.Find(User.Identity.GetUserId());
             if (User.Identity.IsAuthenticated) 
             {
