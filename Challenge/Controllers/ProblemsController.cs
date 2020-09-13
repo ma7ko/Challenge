@@ -161,6 +161,14 @@ namespace Challenge.Controllers
             return RedirectToAction("Index", new { id = problem.ChallengeFK });
         }
 
+        [Route("ApproveUser/{userId}/{problemId:int}")]
+        public ActionResult ApproveUser(string userId, int problemId)
+        {
+            Problem problem = db.Problems.Find(problemId);
+            problem.WinnerFK = db.Users.Find(userId).Email;
+            db.SaveChanges();
+            return RedirectToAction("Details", new { id = problem.Id, id2 = problem.ChallengeFK });
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
