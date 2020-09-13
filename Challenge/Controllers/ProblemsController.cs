@@ -177,5 +177,13 @@ namespace Challenge.Controllers
             }
             base.Dispose(disposing);
         }
+        public ActionResult BackUser()
+        {
+            return RedirectToAction("Index", "Challenges");
+        }
+        public ActionResult BackEditor(int id)
+        {
+            return RedirectToAction("Details", "Challenges", new { id = id});
+        }
     }
 }
